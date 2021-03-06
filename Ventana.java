@@ -1,10 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 public class Ventana extends Frame{
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public Ventana(){
