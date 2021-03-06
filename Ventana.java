@@ -6,7 +6,7 @@ public class Ventana extends Frame{
     public Ventana(){
         this.setSize(300,200);
         this.setVisible(true);
-        this.setTitle("Ventana");
+        this.setTitle("Ventana ejemplo");
     }
     public static void main(String[] args) {
         Ventana windows = new Ventana();
