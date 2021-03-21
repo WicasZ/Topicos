@@ -1,4 +1,4 @@
-package Topicos.BlocNota;
+package BlocNota;
 import java.awt.event.*;
 import java.awt.*;
 public class Colores extends Frame implements ActionListener{
@@ -7,6 +7,7 @@ public class Colores extends Frame implements ActionListener{
      *
      */
     private static final long serialVersionUID = 1L;
+    private TextArea Colores;
     private Button Red;
     private Button Blue;
     private Button Black;
@@ -16,10 +17,17 @@ public class Colores extends Frame implements ActionListener{
     private Panel panel_up;
     private Panel panel_cen;
     private Panel panel_dow;
-    public Colores(){
+
+    //contructor, donde resible el texto area de la clase principal
+    public Colores(TextArea text){
+        this.Colores = text;
         iniColores();
 
     }
+
+    //public void asignarColor(TextArea area){
+      //  this.Colores = area;
+    //}
 
     private void iniColores(){
         this.addWindowListener(new WindowAdapter(){
@@ -27,12 +35,6 @@ public class Colores extends Frame implements ActionListener{
                 System.exit(0);
             }
         });
-        /*panel_up = new Panel();
-        panel_cen = new Panel();
-        panel_dow = new Panel();
-        panel_up.setLayout(new FlowLayout());
-        panel_cen.setLayout(new FlowLayout());
-        panel_dow.setLayout(new FlowLayout());*/
         Red = new Button("Rojo");
         Blue = new Button("Azul");
         Black = new Button("Negro");
@@ -40,34 +42,60 @@ public class Colores extends Frame implements ActionListener{
         Green = new Button("Verde");
         Orange = new Button("Anaranjado");
         this.setLayout(new FlowLayout());
-        //this.setLayout(new BorderLayout());
         this.add(Black);
         this.add(Red);
         this.add(Blue);
         this.add(Green);
         this.add(Orange);
         this.add(Yellow);
-        /*this.add(panel_up, BorderLayout.NORTH);
-        this.add(panel_cen, BorderLayout.CENTER);
-        this.add(panel_dow, BorderLayout.SOUTH);
-        panel_up.add(Black);
-        panel_up.add(Red);
-        panel_cen.add(Blue);
-        panel_cen.add(Green);
-        panel_dow.add(Orange);
-        panel_dow.add(Yellow);*/
-        setResizable(false);
-        setSize(200,140);
-        setVisible(true);
-        setTitle("Color");
+        
+        //Añado un accion cada vez que son presionados
+        Black.addActionListener(this);
+        Red.addActionListener(this);
+        Blue.addActionListener(this);
+        Green.addActionListener(this);
+        Orange.addActionListener(this);
+        Yellow.addActionListener(this);
+
+        //Añado tamaño, visibilidad, Titulo, y para que no sean agrandados
+        this.setResizable(false);
+        this.setSize(250,100);
+        this.setVisible(true);
+        this.setTitle("Color");
+        this.setLocationRelativeTo(null);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
+        //se camia los colores
+        if(e.getSource() == Red){
+            //Metodo para cambia el color de las letras
+            Colores.setForeground(Color.red);
+            dispose(); //para salir solamente de la vetana colores
+        }
+        if(e.getSource() == Black){
+            Colores.setForeground(Color.black);
+            dispose();//para salir solamente de la vetana colores
+        }
+        if(e.getSource() == Yellow){
+            Colores.setForeground(Color.yellow);
+            dispose();//para salir solamente de la vetana colores
+        }
+        if(e.getSource() == Orange){
+            Colores.setForeground(Color.orange);
+            dispose();//para salir solamente de la vetana colores
+        }
+        if(e.getSource() == Green){
+            Colores.setForeground(Color.green);
+            dispose();//para salir solamente de la vetana colores
+        }
+        if(e.getSource() == Blue){
+            Colores.setForeground(Color.blue);
+            dispose();//para salir solamente de la vetana colores
+        }
         
     }
     public static void main(String[] args) {
-        Colores c = new Colores();
+        //Colores c = new Colores();
     }
 }

@@ -1,8 +1,10 @@
-package Topicos.BlocNota;
+package BlocNota;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 
 public class VentanaBloc extends Frame implements ActionListener{
@@ -12,7 +14,7 @@ public class VentanaBloc extends Frame implements ActionListener{
      */
     private static final long serialVersionUID = 1L;
     private TextArea txt_IO;
-    //private Button btn_Color;
+    private Button btn_Color;
     private Button btn_addComillas;
     //private Button btn_Tamaño;
     private Button btn_Abrir;
@@ -23,7 +25,7 @@ public class VentanaBloc extends Frame implements ActionListener{
     private Panel panel_inferior;
     private Button btn_Clean;
     private TextArea Info;
-    private JComboBox Colores;
+    //private JComboBox Colores;
     private JComboBox Tamaño;
     private JComboBox OpGuardar;
     private int tamañofuente = 11;
@@ -58,8 +60,8 @@ public class VentanaBloc extends Frame implements ActionListener{
         panel_inferior.setLayout(new BorderLayout());
         txt_IO = new TextArea();
         Info = new TextArea();
-        //btn_Color = new Button("Color");
-        Colores = new JComboBox<>(NomColor);
+        btn_Color = new Button("Color");
+        //Colores = new JComboBox<>(NomColor);
         Tamaño = new JComboBox<>(tamaños);
         //OpGuardar = new JComboBox<>(opcion);
         btn_addComillas = new Button("Entre comillado");
@@ -70,8 +72,8 @@ public class VentanaBloc extends Frame implements ActionListener{
         btn_Clean = new Button("Limpiar");
         this.setLayout(new FlowLayout());
         this.setLayout(new BorderLayout());
-        //panel_superior.add(btn_Color);
-        panel_superior.add(Colores);
+        panel_superior.add(btn_Color);
+        //panel_superior.add(Colores);
         panel_superior.add(btn_addComillas);
         panel_superior.add(Tamaño);
         //panel_superior.add(btn_Tamaño);
@@ -84,8 +86,8 @@ public class VentanaBloc extends Frame implements ActionListener{
         this.add(panel_superior, BorderLayout.NORTH);
         this.add(panel_central, BorderLayout.CENTER);
         this.add(panel_inferior, BorderLayout.SOUTH);
-        //btn_Color.addActionListener(this);
-        Colores.addActionListener(this);
+        btn_Color.addActionListener(this);
+        //Colores.addActionListener(this);
         btn_addComillas.addActionListener(this);
         Tamaño.addActionListener(this);
         //btn_Tamaño.addActionListener(this);
@@ -98,10 +100,12 @@ public class VentanaBloc extends Frame implements ActionListener{
 
         
 
-        this.setSize(500,700);
+        this.setSize(700,1000);
         this.setVisible(true);
         //if(){}
         this.setTitle(" - Editor de texto");
+        this.setLocationRelativeTo(null);
+    
     }
 
     @Override
@@ -195,7 +199,7 @@ public class VentanaBloc extends Frame implements ActionListener{
         }
 
 
-        if(e.getSource() == Colores){
+        /*if(e.getSource() == Colores){
             //String todo = txt_IO.getText();
             //String texto = txt_IO.getSelectedText();
             //(txt_IO.getSelectedText()).setForeground(Color.red);;
@@ -219,6 +223,12 @@ public class VentanaBloc extends Frame implements ActionListener{
             if(!Colores.getSelectedItem().equals("-Colores-")){
                 Info.append("Cabiado a "+ Colores.getSelectedItem()+"\n");
             }
+        }*/
+
+        if(e.getSource() == btn_Color){
+            Colores color = new Colores(txt_IO);
+            color.setVisible(true);
+            color.getForeground();
         }
 
         if(e.getSource() ==Tamaño){
