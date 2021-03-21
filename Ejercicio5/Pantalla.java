@@ -1,4 +1,4 @@
-package Ejercicio5;
+package Topicos.Ejercicio5;
 import java.awt.Frame;
 import java.awt.event.*; //libreria para la line 13 hasta la 18 el WindowListener
 import java.awt.*;
