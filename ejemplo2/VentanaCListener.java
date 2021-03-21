@@ -1,4 +1,4 @@
-package ejemplo2;
+package Topicos.ejemplo2;
 import java.awt.Frame;
 import java.awt.TextField;
 import java.awt.Button;

@@ -1,4 +1,4 @@
-package Ejercicio4;
+package Topicos.Ejercicio4;
 
 //import java.awt.BorderLayout;
 import java.awt.Frame;

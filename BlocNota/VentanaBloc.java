@@ -1,4 +1,4 @@
-package Ejercicio5.BlocNota;
+package Topicos.BlocNota;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
