@@ -129,6 +129,7 @@ public class VentanaBloc extends Frame implements ActionListener{
             for(int i = 0; i<nombre.length; i++){
                 if((nombre[i]).equals(nom)){
                     txt_IO.setText(dato[i]);
+                    txt_IO.setForeground(Color.black);
                     this.setTitle(nombre[i]);
                 }
             }
@@ -184,6 +185,7 @@ public class VentanaBloc extends Frame implements ActionListener{
                 String nom = JOptionPane.showInputDialog("Nombre");
                 nombre[posicion] = nom + " - Editor de texto";
                 dato[posicion] = txt_IO.getText();
+                setTitle(nombre[posicion]);
                 posicion++;
                 //Info.append("Guardado.\n");
             }
