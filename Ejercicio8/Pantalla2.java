@@ -1,4 +1,4 @@
-package Topicos.Ejercicio6;
+package Ejercicio8;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,17 +8,16 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import Topicos.Ejercicio5.Contenedor;
 
-public class Pantalla extends Frame implements MouseListener, MouseMotionListener, KeyListener {
+public class Pantalla2 extends Frame implements MouseListener, MouseMotionListener, KeyListener {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    private Contenedor obj_pintable;
+    private Contenedor2 obj_pintable;
 
-    public Pantalla() {
+    public Pantalla2() {
         initComponents();
     }
 
@@ -28,19 +27,19 @@ public class Pantalla extends Frame implements MouseListener, MouseMotionListene
                 System.exit(0);
             }
         });
-        obj_pintable = new Contenedor();
+        obj_pintable = new Contenedor2();
         obj_pintable.addMouseListener(this);
         obj_pintable.addMouseMotionListener(this);
         obj_pintable.addKeyListener(this);
         this.addKeyListener(this);
         this.add(obj_pintable);
 
-        this.setSize(500,500);
+        this.setSize(1024,765);
         this.setVisible(true);
     }
 
     public static void main(String args[]) {
-        Pantalla p = new Pantalla();
+        Pantalla2 p = new Pantalla2();
     }
 
     @Override
@@ -108,11 +107,13 @@ public class Pantalla extends Frame implements MouseListener, MouseMotionListene
                 case 'd':
                 case 'D':
                     obj_pintable.setX(obj_pintable.getX() + 1);
+                    obj_pintable.tick();
 
                     break;
                 case 'a':
                 case 'A':
                     obj_pintable.setX(obj_pintable.getX() - 1);
+                    obj_pintable.tick();
                     break;
                 case 'w':
                 case 'W':
