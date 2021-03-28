@@ -15,6 +15,9 @@ public class Snake extends Frame implements MouseListener, MouseMotionListener, 
      */
     private static final long serialVersionUID = 1L;
     private NewContenedor obj_pintable;
+    private int mov = 0;
+    private int l;
+    private int upydow = 0;
 
     public Snake() {
         initComponents();
@@ -105,20 +108,52 @@ public class Snake extends Frame implements MouseListener, MouseMotionListener, 
             switch(arg0.getKeyChar()) {
                 case 'd':
                 case 'D':
+                    if(mov>0){
+                        l = obj_pintable.getA();
+                        obj_pintable.setA(obj_pintable.getL());
+                        obj_pintable.setL(l);
+                        mov=0;
+                        upydow = 0;
+                    }
                     obj_pintable.setX(obj_pintable.getX() + 1);
 
                     break;
                 case 'a':
                 case 'A':
+                    if(mov>0){
+                        l = obj_pintable.getA();
+                        obj_pintable.setA(obj_pintable.getL());
+                        obj_pintable.setL(l);
+                        mov=0;
+                        upydow = 0;
+                    }
                     obj_pintable.setX(obj_pintable.getX() - 1);
                     break;
                 case 'w':
                 case 'W':
+                    
+                    if(mov>-2 && upydow<1){
+                        l = obj_pintable.getA();
+                        obj_pintable.setA(obj_pintable.getL());
+                        obj_pintable.setL(l);
+                        mov=0;
+                        upydow++;
+                    }
+                    mov++;
                     obj_pintable.setY(obj_pintable.getY() - 1);
 
                     break;
                 case 's':
                 case 'S':
+                   
+                    if(mov>-2 && upydow<1){
+                        l = obj_pintable.getA();
+                        obj_pintable.setA(obj_pintable.getL());
+                        obj_pintable.setL(l);
+                        mov=0;
+                        upydow++;
+                    }
+                    mov++;
                     obj_pintable.setY(obj_pintable.getY() + 1);
                     break;
 
