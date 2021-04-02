@@ -12,7 +12,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
     private Button num1, num2, num3, num4, num5, num6, num7, num8, num9, num0;
     private Button sum, mul, rest, punto, div, igual, aParentesis, cParentesis, porcentaje, AC;
     private double resul_op;
-    private int operacion;
+    private int operacion = 0;
     private int contador;
     private String [] savedig;
     Operaciones opera;
@@ -129,10 +129,14 @@ public class CalculadoraGUI extends Frame implements ActionListener{
                 String num =mostrar.getText() + "1";
                 mostrar.setText(num);
             }else{
-                savedig[contador] = "1";
+                mostrar.setText("1");
             }
-            mostrar.setText("1");
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "1";
+                operacion++;
+            }else{
+                savedig[contador] += "1";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
@@ -146,8 +150,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("4");
             }
-            savedig[contador] = "4";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "4";
+                operacion++;
+            }else{
+                savedig[contador] += "4";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
@@ -161,18 +169,22 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("7");
             }
-            savedig[contador] = "7";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "7";
+                operacion++;
+            }else{
+                savedig[contador] += "7";
+            }
             mostrar.setForeground(Color.BLACK);
         }
 
         if(e.getSource() == mul){
             if(!mostrar.getText().equals("1234567890")){
-                //operacion = 1;
-                //resul_op = Double.parseDouble(mostrar.getText());
                 mostrar.setText(mostrar.getText()+"x");
+                if(operacion!=0)contador++;
                 savedig[contador] = "*";
                 contador++;
+                operacion = 0;
             }
         }
         
@@ -186,8 +198,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("2");
             }
-            savedig[contador] = "2";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "2";
+                operacion++;
+            }else{
+                savedig[contador] += "2";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
@@ -201,8 +217,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("5");
             }
-            savedig[contador] = "5";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "5";
+                operacion++;
+            }else{
+                savedig[contador] += "5";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
@@ -216,8 +236,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("8");
             }
-            savedig[contador] = "8";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "8";
+                operacion++;
+            }else{
+                savedig[contador] += "8";
+            }
             mostrar.setForeground(Color.BLACK);
         }
 
@@ -231,8 +255,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("0");
             }
-            savedig[contador] = "0";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "0";
+                operacion++;
+            }else{
+                savedig[contador] += "0";
+            }
             mostrar.setForeground(Color.BLACK);
         }
 
@@ -246,8 +274,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("3");
             }
-            savedig[contador] = "3";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "3";
+                operacion++;
+            }else{
+                savedig[contador] += "3";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
@@ -261,8 +293,12 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("6");
             }
-            savedig[contador] = "6";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "6";
+                operacion++;
+            }else{
+                savedig[contador] += "6";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
@@ -276,61 +312,67 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }else{
                 mostrar.setText("9");
             }
-            savedig[contador] = "9";
-            contador++;
+            if(operacion==0){
+                savedig[contador] = "9";
+                operacion++;
+            }else{
+                savedig[contador] += "9";
+            }
             mostrar.setForeground(Color.BLACK);
         }
         
         if(e.getSource() == punto){
             if(mostrar.getText().equals("1234567890") || mostrar.getText().equals("")){
                 mostrar.setText("0.");
-                savedig[contador] = "0";
-                contador++;
-                savedig[contador] = ".";
+                if(operacion==0){
+                    savedig[contador] = "0.";
+                    operacion++;
+                }
 
             }else{
+
                 String num =mostrar.getText() + ".";
                 mostrar.setText(num);
-                savedig[contador] = ".";
-                contador++;
+                    savedig[contador] += ".";
             }
             mostrar.setForeground(Color.BLACK);
         }
 
         if(e.getSource() == sum){
             if(!mostrar.getText().equals("1234567890")){
-                //operacion = 3;
-                //resul_op = Double.parseDouble(mostrar.getText());
                 mostrar.setText(mostrar.getText() + "+");
+                if(operacion!=0)contador++;
                 savedig[contador] = "+";
                 contador++;
+                operacion =0;
             }
         }
         
         if(e.getSource() == rest){
             if(!mostrar.getText().equals("1234567890")){
-                //operacion = 4;
-                //resul_op = Double.parseDouble(mostrar.getText());
                 mostrar.setText(mostrar.getText() + "-");
+                if(operacion!=0)contador++;
                 savedig[contador] = "-";
                 contador++;
+                operacion =0;
             }
         }
         
         if(e.getSource() == div){
             if(!mostrar.getText().equals("1234567890")){
-                //operacion = 5;
-                //resul_op = Double.parseDouble(mostrar.getText());
                 mostrar.setText(mostrar.getText() + "/");
+                if(operacion!=0)contador++;
                 savedig[contador] = "/";
                 contador++;
+                operacion = 0;
             }
         }
         if(e.getSource() == igual){
             if(!mostrar.getText().equals("1234567890")){
-                //String resultado = (opera.operacion(operacion, resul_op, (Double.parseDouble(mostrar.getText()))));
-                //mostrar.setText(resultado);
-                sohw();
+                opera = new Operaciones();
+                opera.guardar(savedig);
+                //sohw();
+                //opera.show(opera.ecuacion);
                 operacion=0;
                 resul_op = 0;
                 contador = 0;
@@ -341,6 +383,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             if(mostrar.getText().equals("1234567890")){
                 mostrar.setText("");
             }
+            if(operacion!=0)contador++;
             if(!(mostrar.getText()).equals(null)){
                 String num =mostrar.getText() + "(";
                 mostrar.setText(num);
@@ -349,6 +392,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }
             savedig[contador] = "(";
             contador++;
+            operacion = 0;
             mostrar.setForeground(Color.BLACK);
         }
 
@@ -356,6 +400,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             if(mostrar.getText().equals("1234567890")){
                 mostrar.setText("");
             }
+            if(operacion!=0)contador++;
             if(!(mostrar.getText()).equals(null)){
                 String num =mostrar.getText() + ")";
                 mostrar.setText(num);
@@ -364,21 +409,22 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             }
             savedig[contador] = ")";
             contador++;
+            operacion = 0;
             mostrar.setForeground(Color.BLACK);
         }
         
         if(e.getSource() == AC){
+            contador = 0;
             mostrar.setText("");
             operacion = 0;
             resul_op = 0;
         }
     }
-    
 
     private void sohw() {
         int i = 0;
-        while(!savedig[i].equals(null)){
-            System.out.print(savedig[i]);
+        while(!savedig[i].equals(null) || savedig[i].equals("")){
+            System.out.println(savedig[i]);
             i++;
         }
     }
