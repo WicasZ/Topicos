@@ -8,10 +8,8 @@ public class CalculadoraGUI extends Frame implements ActionListener{
     private Panel panel_sup;
     private Panel panel_inf;
     private Label mostrar;
-    private TextField txt;
     private Button num1, num2, num3, num4, num5, num6, num7, num8, num9, num0;
     private Button sum, mul, rest, punto, div, igual, relleno1, relleno2, relleno3, ac;
-    //private double resul_op;
     private int operacion = 0;
     private int contador;
     private String [] savedig;
@@ -61,7 +59,6 @@ public class CalculadoraGUI extends Frame implements ActionListener{
         relleno3 = new Button();
         ac = new Button("AC");
         //campo
-        txt = new TextField("1234567890");
         panel_sup.setLayout(new BorderLayout());
         panel_sup.add(mostrar, BorderLayout.EAST);
         panel_inf.setLayout(new GridLayout(5,4, 5,5));
@@ -266,7 +263,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
 
         if(e.getSource() == num3){
             if(mostrar.getText().equals("1234567890")){
-                txt.setText("");
+                mostrar.setText("");
             }
             if(!(mostrar.getText()).equals(null)){
                 String num =mostrar.getText() + "3";
