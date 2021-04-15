@@ -10,8 +10,8 @@ public class CalculadoraGUI extends Frame implements ActionListener{
     private Label mostrar;
     private TextField txt;
     private Button num1, num2, num3, num4, num5, num6, num7, num8, num9, num0;
-    private Button sum, mul, rest, punto, div, igual, aParentesis, cParentesis, porcentaje, AC;
-    private double resul_op;
+    private Button sum, mul, rest, punto, div, igual, relleno1, relleno2, relleno3, ac;
+    //private double resul_op;
     private int operacion = 0;
     private int contador;
     private String [] savedig;
@@ -21,7 +21,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
         setTitle(nombre);
         iniComponent();
         this.contador = 0;
-        savedig = new String [20];
+        savedig = new String [3];
         opera = new Operaciones();
     }
 
@@ -56,10 +56,10 @@ public class CalculadoraGUI extends Frame implements ActionListener{
         punto = new Button(".");
         div = new Button("/");
         igual = new Button("=");
-        aParentesis = new Button("(");
-        cParentesis = new Button(")");
-        porcentaje = new Button("%");
-        AC = new Button("AC");
+        relleno1 = new Button();
+        relleno2 = new Button();
+        relleno3 = new Button();
+        ac = new Button("AC");
         //campo
         txt = new TextField("1234567890");
         panel_sup.setLayout(new BorderLayout());
@@ -85,10 +85,10 @@ public class CalculadoraGUI extends Frame implements ActionListener{
         panel_inf.add(num8, 3,1);
         panel_inf.add(num9, 3,2);
         panel_inf.add(div, 3,3);
-        panel_inf.add(aParentesis, 4,0);
-        panel_inf.add(cParentesis, 4,1);
-        panel_inf.add(porcentaje, 4,2);
-        panel_inf.add(AC, 4,3);
+        panel_inf.add(relleno1, 4,0);
+        panel_inf.add(relleno2, 4,1);
+        panel_inf.add(relleno3, 4,2);
+        panel_inf.add(ac, 4,3);
         this.add(panel_sup, BorderLayout.NORTH);
         this.add(panel_inf);
         num1.addActionListener(this);
@@ -107,10 +107,10 @@ public class CalculadoraGUI extends Frame implements ActionListener{
         div.addActionListener(this);
         rest.addActionListener(this);
         sum.addActionListener(this);
-        aParentesis.addActionListener(this);
-        cParentesis.addActionListener(this);
-        porcentaje.addActionListener(this);
-        AC.addActionListener(this);
+        relleno1.addActionListener(this);
+        relleno2.addActionListener(this);
+        relleno3.addActionListener(this);
+        ac.addActionListener(this);
 
         this.setSize(500,400);
         this.setVisible(true);
@@ -182,7 +182,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             if(!mostrar.getText().equals("1234567890")){
                 mostrar.setText(mostrar.getText()+"x");
                 if(operacion!=0)contador++;
-                savedig[contador] = "*";
+                savedig[contador] = "1";
                 contador++;
                 operacion = 0;
             }
@@ -342,7 +342,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             if(!mostrar.getText().equals("1234567890")){
                 mostrar.setText(mostrar.getText() + "+");
                 if(operacion!=0)contador++;
-                savedig[contador] = "+";
+                savedig[contador] = "3";
                 contador++;
                 operacion =0;
             }
@@ -352,7 +352,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             if(!mostrar.getText().equals("1234567890")){
                 mostrar.setText(mostrar.getText() + "-");
                 if(operacion!=0)contador++;
-                savedig[contador] = "-";
+                savedig[contador] = "4";
                 contador++;
                 operacion =0;
             }
@@ -362,7 +362,7 @@ public class CalculadoraGUI extends Frame implements ActionListener{
             if(!mostrar.getText().equals("1234567890")){
                 mostrar.setText(mostrar.getText() + "/");
                 if(operacion!=0)contador++;
-                savedig[contador] = "/";
+                savedig[contador] = "5";
                 contador++;
                 operacion = 0;
             }
@@ -370,62 +370,17 @@ public class CalculadoraGUI extends Frame implements ActionListener{
         if(e.getSource() == igual){
             if(!mostrar.getText().equals("1234567890")){
                 opera = new Operaciones();
-                opera.guardar(savedig);
-                //sohw();
-                //opera.show(opera.ecuacion);
                 operacion=0;
-                resul_op = 0;
-                contador = 0;
+                contador = 1;
+                savedig[0] = opera.operacion(savedig);
+                mostrar.setText(savedig[0]);
             }     
         }
-
-        if(e.getSource() == aParentesis){
-            if(mostrar.getText().equals("1234567890")){
-                mostrar.setText("");
-            }
-            if(operacion!=0)contador++;
-            if(!(mostrar.getText()).equals(null)){
-                String num =mostrar.getText() + "(";
-                mostrar.setText(num);
-            }else{
-                mostrar.setText("(");
-            }
-            savedig[contador] = "(";
-            contador++;
-            operacion = 0;
-            mostrar.setForeground(Color.BLACK);
-        }
-
-        if(e.getSource() == cParentesis){
-            if(mostrar.getText().equals("1234567890")){
-                mostrar.setText("");
-            }
-            if(operacion!=0)contador++;
-            if(!(mostrar.getText()).equals(null)){
-                String num =mostrar.getText() + ")";
-                mostrar.setText(num);
-            }else{
-                mostrar.setText(")");
-            }
-            savedig[contador] = ")";
-            contador++;
-            operacion = 0;
-            mostrar.setForeground(Color.BLACK);
-        }
         
-        if(e.getSource() == AC){
+        if(e.getSource() == ac){
             contador = 0;
             mostrar.setText("");
             operacion = 0;
-            resul_op = 0;
-        }
-    }
-
-    private void sohw() {
-        int i = 0;
-        while(!savedig[i].equals(null) || savedig[i].equals("")){
-            System.out.println(savedig[i]);
-            i++;
         }
     }
 
