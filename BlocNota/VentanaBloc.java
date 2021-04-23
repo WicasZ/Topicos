@@ -41,9 +41,9 @@ public class VentanaBloc extends Frame implements ActionListener{
     private Panel panel_inferior;
     
     //Listado de opciones
-    private JComboBox Tamaño;
-    private int tamañofuente = 12;
-    private String [] tamaños = {"-Tamaño-", "Aumentar", "Disminuir"};
+    private JComboBox Tama�o;
+    private int tama�ofuente = 12;
+    private String [] tama�os = {"-Tama�o-", "Aumentar", "Disminuir"};
     
     //Constructor
     public VentanaBloc(){
@@ -74,7 +74,7 @@ public class VentanaBloc extends Frame implements ActionListener{
         txt_IO = new TextArea();
         Info = new TextField();
         btn_Color = new Button("Color");
-        Tamaño = new JComboBox<>(tamaños);
+        Tama�o = new JComboBox<>(tama�os);
         btn_addComillas = new Button("Entre comillado");
         btn_nuevo = new Button("Nuevo");
         btn_Abrir = new Button("Abrir");
@@ -86,7 +86,7 @@ public class VentanaBloc extends Frame implements ActionListener{
         panel_superior.add(btn_nuevo);
         panel_superior.add(btn_Color);
         panel_superior.add(btn_addComillas);
-        panel_superior.add(Tamaño);
+        panel_superior.add(Tama�o);
         panel_superior.add(btn_Abrir);
         panel_superior.add(btn_Salir);
         panel_superior.add(btn_Guardar);
@@ -99,7 +99,7 @@ public class VentanaBloc extends Frame implements ActionListener{
         //les añado un escuchador
         btn_Color.addActionListener(this);
         btn_addComillas.addActionListener(this);
-        Tamaño.addActionListener(this);
+        Tama�o.addActionListener(this);
         btn_nuevo.addActionListener(this);
         btn_Abrir.addActionListener(this);
         btn_Salir.addActionListener(this);
@@ -110,7 +110,7 @@ public class VentanaBloc extends Frame implements ActionListener{
         this.setVisible(true);
         this.setTitle(" - Mi editor de texto");
         this.setLocationRelativeTo(null);
-        txt_IO.setFont(new Font("Arial", 0, tamañofuente));
+        txt_IO.setFont(new Font("Arial", 0, tama�ofuente));
     
     }
 
@@ -208,16 +208,16 @@ public class VentanaBloc extends Frame implements ActionListener{
             Info.setText("Cambiado de color");
         }
 
-        if(e.getSource() ==Tamaño){
+        if(e.getSource() ==Tama�o){
             //tengo dos condiciones si aumneto o disminuyo
-            if(Tamaño.getSelectedItem().equals("Aumentar")){
-                tamañofuente++;//al tamaño fuente le aumneto
-                txt_IO.setFont(new Font("Arial", 0, tamañofuente));
+            if(Tama�o.getSelectedItem().equals("Aumentar")){
+                tama�ofuente++;//al tamaño fuente le aumneto
+                txt_IO.setFont(new Font("Arial", 0, tama�ofuente));
                 Info.setText("Tamaño aumentado\n");//muestro lo que hice
             }
-            if(Tamaño.getSelectedItem().equals("Disminuir")){
-                tamañofuente--;//al tamaño fuente le disminuyo
-                txt_IO.setFont(new Font("Arial", 0, tamañofuente));
+            if(Tama�o.getSelectedItem().equals("Disminuir")){
+                tama�ofuente--;//al tamaño fuente le disminuyo
+                txt_IO.setFont(new Font("Arial", 0, tama�ofuente));
                 Info.setText("Tamaño disminuido\n");//muestro lo que hice
             }
             

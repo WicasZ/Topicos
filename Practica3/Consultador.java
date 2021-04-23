@@ -10,7 +10,6 @@ import java.net.*;
 public class Consultador extends JFrame implements ActionListener {
 
     public Consultador() {
-        menu();
         topPanel();
         centerPanel();
         bottomPanel();
@@ -30,20 +29,9 @@ public class Consultador extends JFrame implements ActionListener {
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
 
-        toAcept.addActionListener(this);
-        clear.addActionListener(this);
+        btn_consultar.addActionListener(this);
+        btn_clean.addActionListener(this);
         item.addActionListener(this);
-
-    }
-
-    private void menu() {
-        menubar = new JMenuBar();
-        menu = new JMenu("Menu");
-        item = new JMenuItem("Ayuda");
-
-        this.setJMenuBar(menubar);
-        menubar.add(menu);
-        menu.add(item);
 
     }
 
@@ -52,19 +40,19 @@ public class Consultador extends JFrame implements ActionListener {
         topPanel.setLayout(new BorderLayout());
         topPanel.setBackground(Color.yellow);
 
-        web = new JLabel("Introduce la direcion web: ");
+        web = new JLabel("<html><body>"+"Introduce la direcion web:"+"<br>"+"Por ejemplo: www.ejemplo.com");
         web.setBackground(Color.DARK_GRAY);
         web.setForeground(Color.WHITE);
 
         directionIP = new JTextField();
 
-        toAcept = new JButton("Aceptar");
-        toAcept.setBackground(new Color(93, 173, 226));
-        toAcept.setForeground(Color.WHITE);
+        btn_consultar = new JButton("Consultar");
+        btn_consultar.setBackground(new Color(93, 173, 226));
+        btn_consultar.setForeground(Color.WHITE);
 
         topPanel.add(web, BorderLayout.WEST);
         topPanel.add(directionIP);
-        topPanel.add(toAcept, BorderLayout.EAST);
+        topPanel.add(btn_consultar, BorderLayout.EAST);
 
     }
 
@@ -83,56 +71,47 @@ public class Consultador extends JFrame implements ActionListener {
         bottomPanel.setLayout(new GridLayout(1, 2));
         topPanel.setBackground(new Color(128, 139, 150));
 
-        clear = new JButton("Limpiar");
+        btn_clean = new JButton("Limpiar");
 
-        clear.setBackground(new Color(245, 176, 65));
-        clear.setForeground(Color.WHITE);
-        bottomPanel.add(clear);
+        btn_clean.setBackground(new Color(245, 176, 65));
+        btn_clean.setForeground(Color.WHITE);
+        bottomPanel.add(btn_clean);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object buttonPressed = e.getSource();
 
-        if (buttonPressed == toAcept) {
+        if (buttonPressed == btn_consultar) {
             try {
                 getIP();
             } catch (Exception error) {
                 // TODO: handle exception
             }
         }
-        if (buttonPressed == clear) {
+        if (buttonPressed == btn_clean) {
             information.setText("");
             directionIP.setText("");
-        }
-        if (buttonPressed == item) {
-            JDialog d = new JDialog(this);
-            h = new Ayuda(d, true);
-            h.setVisible(true);
         }
     }
 
     public void getIP() throws UnknownHostException {
         String url = directionIP.getText();
         InetAddress ip = InetAddress.getByName(url);
-        information.setText("La direccion IP es: \n" + ip.getHostAddress());
+        information.setText("La direccion IP es: " + ip.getHostAddress());
     }
 
     public static void main(String[] args) {
         Consultador con = new Consultador();
     }
-
-    private JMenuBar menubar;
-    private JMenu menu;
     private JMenuItem item;
     private JTextField directionIP;
     private JLabel web;
     private JTextArea information;
-    private JButton toAcept;
-    private JButton clear;
+    private JButton btn_consultar;
+    private JButton btn_clean;
     private JPanel topPanel;
     private JPanel centerPanel;
     private JPanel bottomPanel;
-    private Ayuda h;
 
 }
